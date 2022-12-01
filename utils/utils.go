@@ -7,3 +7,12 @@ func Sum(array []int) int {
 	}
 	return result
 }
+
+func Last[T any](array []T, count int) []T {
+	result := []T{}
+
+	if count < 1 {
+		return result
+	}
+	return array[len(array)-count:]
+}

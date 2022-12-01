@@ -12,69 +12,25 @@ import (
 )
 
 func main() {
+	file, err := os.Open("day1.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
 	start := time.Now()
 
-	part1 := day1part1()
-	part1Time := time.Since(start)
+	part1, part2 := day1(file)
+	timeElapsed := time.Since(start)
 
-	part2 := day1part2()
-	part2Time := time.Since(start)
-
-	log.Printf("Part1. Answer: %d Took: %dms", part1, part1Time.Milliseconds())
-	log.Printf("Part2. Answer: %d Took: %dms", part2, part2Time.Milliseconds())
+	log.Printf("Part1: %d. Part2: %d. Took: %dms", part1, part2, timeElapsed.Milliseconds())
 }
 
-func day1part1() int {
-	f, err := os.Open("day1.txt")
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	defer f.Close()
-	currentElf := []int{}
-
-	scanner := bufio.NewScanner(f)
-	var maxVal = 0
-
-	for scanner.Scan() {
-		val := scanner.Text()
-
-		if val == "" {
-			// if empty line = new elf
-			sum := utils.Sum(currentElf)
-
-			if sum > maxVal {
-				maxVal = sum
-			}
-
-			currentElf = []int{}
-		} else {
-			// if not empty = add to current elf
-			cal, err := strconv.Atoi(val)
-
-			if err != nil {
-				log.Fatal(err)
-			}
-			currentElf = append(currentElf, cal)
-		}
-	}
-	return maxVal
-}
-
-func day1part2() int {
-	f, err := os.Open("day1.txt")
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	defer f.Close()
-
+func day1(input *os.File) (int, int) {
 	elves := []int{}
 	currentElf := []int{}
 
-	scanner := bufio.NewScanner(f)
+	scanner := bufio.NewScanner(input)
 
 	for scanner.Scan() {
 		val := scanner.Text()
@@ -96,6 +52,8 @@ func day1part2() int {
 		}
 	}
 	sort.Ints(elves)
+	part1 := elves[len(elves)-1]
+	part2 := utils.Sum(utils.Last(elves, 3))
 
-	return elves[len(elves)-1] + elves[len(elves)-2] + elves[len(elves)-3]
+	return part1, part2
 }
