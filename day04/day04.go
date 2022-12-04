@@ -38,8 +38,8 @@ func main() {
 		if isContainedBy(firstElf, secondElf) ||
 			isContainedBy(secondElf, firstElf) {
 			contained++
-		}
-		if isOverlapping(firstElf, secondElf) {
+			overlapping++
+		} else if isOverlapping(firstElf, secondElf) {
 			overlapping++
 		}
 	}
