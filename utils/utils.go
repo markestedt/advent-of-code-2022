@@ -1,5 +1,11 @@
 package utils
 
+import (
+	"bufio"
+	"log"
+	"os"
+)
+
 func Sum(array []int) int {
 	result := 0
 	for _, v := range array {
@@ -36,4 +42,23 @@ func Chunks(arr []string, size int) [][]string {
 	}
 
 	return chunks
+}
+
+func GetLines(path string) []string {
+	file, err := os.Open(path)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+
+	var lines []string
+
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+
+	}
+
+	return lines
 }
