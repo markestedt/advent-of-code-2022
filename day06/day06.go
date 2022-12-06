@@ -33,13 +33,13 @@ func solve(input string, markerSize int) int {
 }
 
 func hasDuplicate(input string) bool {
-	var visited []string
+	var visited []rune
 
 	for _, s := range input {
-		if utils.Contains(visited, string(s)) {
+		if utils.Contains(visited, s) {
 			return true
 		}
-		visited = append(visited, string(s))
+		visited = append(visited, s)
 	}
 	return false
 }

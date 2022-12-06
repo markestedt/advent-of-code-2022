@@ -23,6 +23,15 @@ func Last[T any](array []T, count int) []T {
 	return array[len(array)-count:]
 }
 
+func Contains[T comparable](s []T, e T) bool {
+	for _, a := range s {
+		if a == e {
+			return true
+		}
+	}
+	return false
+}
+
 func Split(s string) (string, string) {
 	middle := len(s) / 2
 
