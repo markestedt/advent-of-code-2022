@@ -6,8 +6,12 @@ import (
 	"os"
 )
 
-func Sum(array []int) int {
-	result := 0
+type Number interface {
+	int | int32 | int64 | float32 | float64
+}
+
+func Sum[T Number](array []T) T {
+	var result T
 	for _, v := range array {
 		result += v
 	}
@@ -38,8 +42,8 @@ func Split(s string) (string, string) {
 	return s[:middle], s[middle:]
 }
 
-func Chunks(arr []string, size int) [][]string {
-	var chunks [][]string
+func Chunks[T any](arr []T, size int) [][]T {
+	var chunks [][]T
 	for i := 0; i < len(arr); i += size {
 		end := i + size
 
