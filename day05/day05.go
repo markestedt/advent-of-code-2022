@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	lines := utils.GetLines("day05.txt")
+	lines := utils.GetLines("day05/day05.txt")
 	start := time.Now()
 	timeElapsed := time.Since(start)
 	log.Printf("Part1: %s. Part2: %s. Took: %dms", part1(lines, getStacks()), part2(lines, getStacks()), timeElapsed.Milliseconds())

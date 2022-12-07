@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	input := utils.GetLines("day06.txt")[0]
+	input := utils.GetLines("day06/day06.txt")[0]
 	start := time.Now()
 
 	part1 := solve(input, 4)

@@ -22,3 +22,6 @@ go.work
 
 # Ignore input txt files
 *.txt
+
+.idea
+.vscode
