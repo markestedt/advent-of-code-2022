@@ -57,6 +57,26 @@ func Chunks[T any](arr []T, size int) [][]T {
 	return chunks
 }
 
+type Point struct {
+	X int
+	Y int
+}
+
+func BuildGrid(lines []string) map[Point]int {
+	var grid = make(map[Point]int)
+
+	for i, line := range lines {
+		for j, val := range line {
+
+			newPoint := Point{X: j, Y: i}
+			height := int(val - '0')
+
+			grid[newPoint] = height
+		}
+	}
+	return grid
+}
+
 func GetLines(path string) []string {
 	file, err := os.Open(path)
 	if err != nil {
