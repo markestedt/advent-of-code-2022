@@ -57,6 +57,23 @@ func Chunks[T any](arr []T, size int) [][]T {
 	return chunks
 }
 
+func SignInt(x int) int {
+	if x < 0 {
+		return -1
+	}
+	if x == 0 {
+		return 0
+	}
+	return 1
+}
+
+func Abs(x int) int {
+	if x < 0 {
+		return 0 - x
+	}
+	return x - 0
+}
+
 type Point struct {
 	X int
 	Y int
