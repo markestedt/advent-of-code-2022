@@ -5,6 +5,7 @@ import (
 	"log"
 	"strconv"
 	"strings"
+	"time"
 )
 
 type knot struct {
@@ -14,8 +15,12 @@ type knot struct {
 
 func main() {
 	instructions := utils.GetLines("day09/day09.txt")
-	part1(instructions)
-	part2(instructions)
+	start := time.Now()
+
+	part1, part2 := solve(instructions)
+
+	timeElapsed := time.Since(start)
+	log.Printf("Part1: %d. Part2: %d. Took: %dms", part1, part2, timeElapsed.Milliseconds())
 }
 
 func move(head *knot, tail *knot) {
@@ -32,37 +37,7 @@ func move(head *knot, tail *knot) {
 	}
 }
 
-func part1(instructions []string) {
-	startingPoint := utils.Point{X: 0, Y: 0}
-
-	head := knot{Position: startingPoint, Visited: []utils.Point{startingPoint}}
-	tail := knot{Position: startingPoint, Visited: []utils.Point{startingPoint}}
-
-	for _, inst := range instructions {
-		x := strings.Split(inst, " ")
-		direction := x[0]
-		distance, _ := strconv.Atoi(x[1])
-
-		for i := 0; i < distance; i++ {
-			switch direction {
-			case "R":
-				head.Position.X++
-			case "L":
-				head.Position.X--
-			case "U":
-				head.Position.Y++
-			case "D":
-				head.Position.Y--
-			}
-
-			move(&head, &tail)
-		}
-	}
-
-	log.Println(len(tail.Visited))
-}
-
-func part2(instructions []string) {
+func solve(instructions []string) (int, int) {
 	startingPoint := utils.Point{X: 0, Y: 0}
 
 	head := knot{Position: startingPoint, Visited: []utils.Point{startingPoint}}
@@ -100,5 +75,6 @@ func part2(instructions []string) {
 			}
 		}
 	}
-	log.Println(len(nine.Visited))
+
+	return len(one.Visited), len(nine.Visited)
 }
