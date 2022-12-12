@@ -79,6 +79,10 @@ type Point struct {
 	Y int
 }
 
+func (p Point) Add (x Point) Point {
+	return Point{X: p.X + x.X, Y: p.Y + x.Y}
+}
+
 func BuildGrid(lines []string) map[Point]int {
 	var grid = make(map[Point]int)
 
