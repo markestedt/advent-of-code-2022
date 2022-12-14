@@ -18,6 +18,14 @@ func Sum[T Number](array []T) T {
 	return result
 }
 
+func Copy[T1 comparable, T2 any](source map[T1]T2) map[T1]T2{
+	target := make(map[T1]T2, len(source))
+	for key, value := range source {
+		target[key] = value
+	}
+	return target
+}
+
 func Last[T any](array []T, count int) []T {
 	result := []T{}
 
