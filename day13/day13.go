@@ -11,7 +11,7 @@ import (
 
 
 func main() {
-	data,_ := os.ReadFile("Day13/day13test.txt")
+	data,_ := os.ReadFile("day13/day13test.txt")
 	input := strings.Split(string(data), "\n\n")
 
 	var packets []any

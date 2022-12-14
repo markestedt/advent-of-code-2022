@@ -15,7 +15,7 @@ var downLeft = utils.Point{X: -1, Y: 1}
 var downRight = utils.Point{X: 1, Y: 1}
 
 func main() {
-	lines := utils.GetLines("Day14/day14.txt")
+	lines := utils.GetLines("day14/day14.txt")
 	cave1, floor := buildCave(lines)
 
 	//Since map is reference type, I can't use the same 'cave' for both parts.
